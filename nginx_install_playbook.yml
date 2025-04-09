@@ -1,0 +1,18 @@
+---
+  - name: Installing Nginx and cronjob configuring it
+    hosts: all
+    become: true
+
+   tasks:
+     - name: Printing OS version
+       debug:
+         msg: "This is OS {{ ansible_distribution }}"
+         
+  - name: Start Nginx
+    service: 
+      name: nginx
+      state: started
+      enable: true
+    when: ansible_distribution == "Amazon"
+        
+  
